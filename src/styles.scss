@@ -1,2 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+@import "./assets/scss/variables";
+
+
+body {
+  background-image: url(../public/images/resourse/Bacground-desktop.png);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  min-height: 100dvh;
+}

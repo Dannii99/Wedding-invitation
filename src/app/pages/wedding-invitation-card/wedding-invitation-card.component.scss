@@ -1,0 +1,28 @@
+.banner {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url('/images/resourse/banner.svg');
+  background-size: contain;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+.banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background-image: url('/images/resourse/banner.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+}
