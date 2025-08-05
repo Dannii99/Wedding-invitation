@@ -4,7 +4,7 @@
   overflow: hidden;
 }
 
-.banner::before {
+/* .banner::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -25,4 +25,45 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom left;
+} */
+
+
+.border-july {
+  position: absolute;
+  background-size: contain;
+  &.left {
+    background-image: url('/images/resourse/border_banner.svg');
+    background-repeat: repeat-y;
+    width: 35px;
+    height: 100%;
+    top: 5px;
+    left: 0;
+  }
+  &.right {
+    background-image: url('/images/resourse/border_banner.svg');
+    background-repeat: repeat-y;
+    width: 35px;
+    height: 100%;
+    top: 5px;
+    right: 0;
+    transform: scaleX(-1);
+  }
+  &.top {
+    background-repeat: repeat-x;
+    background-image: url('/images/resourse/border-banner-rotate.svg');
+    background-position: center;
+    width: 150%;
+    height: 35px;
+    top: 0;
+    left: 0;
+  }
+  &.bottom {
+    background-repeat: repeat-x;
+    background-image: url('/images/resourse/border-banner-rotate.svg');
+    width: 95%;
+    height: 35px;
+    bottom: 0;
+    left: 5px;
+    transform: scaleY(-1);
+  }
 }
