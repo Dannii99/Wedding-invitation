@@ -1,0 +1,1 @@
+import{Ea as p,Q as t,la as i,ma as d,oa as o,pa as a}from"./chunk-DJGAITJD.js";var m=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=t({type:n,selectors:[["app-wedding-landing"]],standalone:!0,features:[a],decls:2,vars:0,template:function(e,r){e&1&&(i(0,"p"),o(1,"wedding-landing works!"),d())},dependencies:[p]})};export{m as WeddingLandingComponent};
