@@ -2,30 +2,11 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
+  font-size: clamp(15px, 25px, 5.5vw);
+  /*   @media screen and (min-width: 768px) {
+        font-size: clamp(3px, 26px, 2vw);
+    } */
 }
-
-/* .banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-  background-image: url('/images/resourse/banner.svg');
-  background-size: contain;
-  background-position: top left;
-  background-repeat: no-repeat;
-}
-.banner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 3;
-  background-image: url('/images/resourse/banner.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: bottom left;
-} */
 
 
 .border-july {
