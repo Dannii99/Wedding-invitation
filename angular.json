@@ -29,14 +29,14 @@
               {
                 "glob": "**/*",
                 "input": "public",
-                "output": "/"
+                "output": ""
               }
             ],
             "styles": [
               "src/styles.scss"
             ],
             "scripts": [],
-            "baseHref": "wedding-invitation"
+            "baseHref": "/Wedding-invitation/"
           },
           "configurations": {
             "production": {
