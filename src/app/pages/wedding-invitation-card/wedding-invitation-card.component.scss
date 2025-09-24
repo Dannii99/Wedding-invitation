@@ -13,7 +13,7 @@
   position: absolute;
   background-size: contain;
   &.left {
-    background-image: url('https://dannii99.github.io/Wedding-invitation/images/resourse/border_banner.svg');
+    background-image: url('/images/resource/border_banner.svg');
     background-repeat: repeat-y;
     width: 35px;
     height: 100%;
@@ -21,7 +21,7 @@
     left: 0;
   }
   &.right {
-    background-image: url('https://dannii99.github.io/Wedding-invitation/images/resourse/border_banner.svg');
+    background-image: url('/images/resource/border_banner.svg');
     background-repeat: repeat-y;
     width: 35px;
     height: 100%;
@@ -31,7 +31,7 @@
   }
   &.top {
     background-repeat: repeat-x;
-    background-image: url('https://dannii99.github.io/Wedding-invitation/images/resourse/border-banner-rotate.svg');
+    background-image: url('/images/resource/border-banner-rotate.svg');
     background-position: center;
     width: 150%;
     height: 35px;
@@ -40,7 +40,7 @@
   }
   &.bottom {
     background-repeat: repeat-x;
-    background-image: url('https://dannii99.github.io/Wedding-invitation/images/resourse/border-banner-rotate.svg');
+    background-image: url('/images/resource/border-banner-rotate.svg');
     width: 95%;
     height: 35px;
     bottom: 0;
