@@ -1,0 +1,51 @@
+.banner {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  font-size: clamp(15px, 25px, 5.5vw);
+  /*   @media screen and (min-width: 768px) {
+        font-size: clamp(3px, 26px, 2vw);
+    } */
+}
+
+
+.border-july {
+  position: absolute;
+  background-size: contain;
+  &.left {
+    background-image: url('/images/resource/border_banner.svg');
+    background-repeat: repeat-y;
+    width: 35px;
+    height: 100%;
+    top: 5px;
+    left: 0;
+  }
+  &.right {
+    background-image: url('/images/resource/border_banner.svg');
+    background-repeat: repeat-y;
+    width: 35px;
+    height: 100%;
+    top: 5px;
+    right: 0;
+    transform: scaleX(-1);
+  }
+  &.top {
+    background-repeat: repeat-x;
+    background-image: url('/images/resource/border-banner-rotate.svg');
+    background-position: center;
+    width: 150%;
+    height: 35px;
+    top: 0;
+    left: 0;
+  }
+  &.bottom {
+    background-repeat: repeat-x;
+    background-image: url('/images/resource/border-banner-rotate.svg');
+    width: 95%;
+    height: 35px;
+    bottom: 0;
+    left: 5px;
+    transform: scaleY(-1);
+  }
+}
+
