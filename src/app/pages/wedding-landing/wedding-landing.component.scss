@@ -49,3 +49,16 @@
   }
 }
 
+
+.portada{
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+   &.one {
+     background-image: url('/images/galery/image-15.png');
+   }
+   &.thwo {
+     background-image: url('/images/galery/image-17.png');
+   }
+
+}

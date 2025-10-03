@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Fleur+De+Leah&family=Italianno&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Simonetta:ital,wght@0,400;0,900;1,400;1,900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Fleur+De+Leah&family=Italianno&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Simonetta:ital,wght@0,400;0,900;1,400;1,900&display=swap');
+ */
+ @import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=Carattere&family=Dancing+Script:wght@400..700&family=Fleur+De+Leah&family=Italianno&family=Italiana&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Simonetta:ital,wght@0,400;0,900;1,400;1,900&display=swap');
 
 .italianno-regular {
   font-family: "Italianno", cursive;
@@ -50,9 +52,70 @@
   font-style: normal;
 }
 
+.playfair-display-bold {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
 .playfair-display-black {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
+}
+
+
+.caladea-regular {
+  font-family: "Caladea", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.caladea-bold {
+  font-family: "Caladea", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.caladea-regular-italic {
+  font-family: "Caladea", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.caladea-bold-italic {
+  font-family: "Caladea", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.carattere-regular {
+  font-family: "Carattere", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+// <weight>: Use a value from 400 to 700
+// <uniquifier>: Use a unique and descriptive class name
+
+.dancing-script-regular {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+// <weight>: Use a value from 100 to 900
+// <uniquifier>: Use a unique and descriptive class name
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }

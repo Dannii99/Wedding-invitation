@@ -11,12 +11,12 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'wedding-landing',
+    redirectTo: 'wedding-invitation',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: 'wedding-landing',
+    redirectTo: 'wedding-invitation',
     pathMatch: 'full'
   }
 ];
