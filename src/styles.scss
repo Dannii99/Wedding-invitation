@@ -16,3 +16,35 @@ body {
   background-repeat: no-repeat;
   min-height: 100dvh;
 }
+
+/* Fade-in básico */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px); /* opcional: sutil subida */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Utilidad reusable */
+.fade-in {
+  animation: fade-in .7s ease-out both; /* both = mantiene el estado final */
+}
+
+/* Variantes útiles (opcionales) */
+.fade-in--slow   { animation-duration: 1s; }
+.fade-in--fast   { animation-duration: .4s; }
+.fade-in--delay  { animation-delay: .15s; }   /* encadenar varias para “stagger” */
+
+/* Accesibilidad: respeta usuarios con motion reducido */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in, .fade-in--slow, .fade-in--fast {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
