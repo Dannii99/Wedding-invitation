@@ -10,21 +10,25 @@
       <img
         src="images/resource/flower-01.svg"
         alt="flor center"
+        loading="lazy"
         class="absolute right-[0rem] top-[-0rem] w-full max-w-[5.808em]"
       />
       <img
         src="images/resource/flower-02.svg"
         alt="flor center"
+        loading="lazy"
         class="absolute left-[-1rem] top-1/2 -translate-y-[15%] w-full max-w-[7em]"
       />
       <img
         src="images/resource/flower-03.svg"
         alt="flor center"
+        loading="lazy"
         class="absolute right-[-0.3125rem] bottom-[0rem] w-full max-w-[12.2698em]"
       />
       <img
         src="images/resource/flower-04.svg"
         alt="flor center"
+        loading="lazy"
         class="absolute left-[-0.1875rem] top-[0rem] w-full max-w-[9em]"
       />
       <div class="w-full h-full bg-[var(--color-primary)] p-[1.44em]">
@@ -32,6 +36,7 @@
           <img
             src="images/resource/circle-ramo.svg"
             alt="ramo"
+            loading="lazy"
             class="w-full max-w-[9.48em] relative"
           />
           <p
@@ -60,9 +65,21 @@
           Shannon
         </h1>
 
-        <div
-          class="relative w-[0.125rem] h-[3.8em] bg-black mb-[1.1em] mx-auto"
-        ></div>
+        <div class="flex mb-[1.1em]">
+          <!-- line -->
+          <!-- <div
+            class="relative w-[0.125rem] h-[3.8em] bg-black mx-auto"
+          ></div> -->
+          <!-- love letter -->
+           <div class="card-letter-container">
+             <div class="envelope relative mx-auto flex justify-center overflow-hidden animate-growIn">
+               <img src="images/ico/icon_letter_love/card_top.svg" alt="top" loading="lazy" class="absolute w-20 top-0 flap-anim">
+               <img src="images/ico/icon_letter_love/letter.svg" alt="letter" loading="lazy" class="absolute w-[3.375rem] z-10 bottom-0 letter-anim">
+               <img src="images/ico/icon_letter_love/card_front.svg" alt="front" loading="lazy" class="absolute w-20 z-20 bottom-0">
+               <img src="images/ico/icon_letter_love/card_back.svg" alt="back" loading="lazy" class="absolute w-20 bottom-0">
+             </div>
+           </div>
+        </div>
 
         <p
           class="relative mb-[0.96em] text-[0.72em] leading-[1.5em] text-center playfair-display-regular"
@@ -74,7 +91,7 @@
           28 DE FEBRERO, 2026
         </p>
 
-        <a
+        <!-- <a
           routerLink="/wedding-landing"
           class="text-sm relative z-10  group mx-auto mt-[0.5em] mb-[3em] flex justify-center items-center gap-2 text-sky-800 font-medium underline decoration-2 underline-offset-4 hover:decoration-4 hover:text-sky-900 transition-all"
           aria-label="Ir a la invitación digital con toda la información"
@@ -93,7 +110,9 @@
               stroke-linejoin="round"
             />
           </svg>
-        </a>
+        </a> -->
+
+
       </div>
     </div>
   </div>
