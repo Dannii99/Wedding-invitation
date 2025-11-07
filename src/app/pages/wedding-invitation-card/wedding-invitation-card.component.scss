@@ -48,3 +48,73 @@
     transform: scaleY(-1);
   }
 }
+
+.card-letter-container {
+   @apply w-max;
+  perspective: 800px;
+}
+
+.envelope {
+  @apply w-[3.2em] h-[3.2em];
+  transform-style: preserve-3d;
+}
+
+.flap-anim {
+  @apply z-20;
+  transform-origin: bottom;
+  transform: rotateX(180deg);
+  animation: flapOpen 0.5s ease-in-out 0.5s forwards;
+}
+
+.letter-anim {
+  transform: translateY(20px);
+  animation: letterUp 0.5s ease-out 0.8s forwards, letterFloat 2s ease-in-out 1.4s infinite; ;
+}
+
+.animate-growIn {
+  animation: growIn 0.5s ease-out 0s forwards;
+}
+
+@keyframes growIn {
+  0% {
+    opacity: 0;
+    transform: scale(0)
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1)
+  }
+}
+
+@keyframes flapOpen {
+  0% {
+    @apply z-20;
+    transform-origin: bottom;
+    transform: rotateX(180deg);
+  }
+  100% {
+    @apply z-0;
+    transform-origin: bottom;
+    transform: rotateX(0deg);
+  }
+}
+
+
+@keyframes letterUp {
+  0% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes letterFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+

@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { interval, startWith, Subscription } from 'rxjs';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { GaleryService } from '../../core/services/galery.service';
 
 @Component({
   selector: 'app-wedding-landing',
@@ -28,6 +29,7 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
 
   private sub?: Subscription;
   private destroyRef = inject(DestroyRef);
+  private galeryService = inject(GaleryService);
 
   boxes: Array<{ label: string; value: string }> = [
     { label: 'DÍAS', value: '00' },
@@ -71,6 +73,8 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
   private swipeThreshold = 40; // px
 
   ngOnInit(): void {
+    // this.galeryService.getGalery();
+
     if (this.showSeconds) {
       this.boxes = [
         { label: 'DÍAS', value: '00' },
