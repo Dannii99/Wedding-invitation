@@ -31,7 +31,7 @@ body {
 
 /* Utilidad reusable */
 .fade-in {
-  animation: fade-in 1.2s ease-out both; /* both = mantiene el estado final */
+  animation: fade-in 1.5s ease-out 0.2s both; /* both = mantiene el estado final */
 }
 
 /* Variantes útiles (opcionales) */
