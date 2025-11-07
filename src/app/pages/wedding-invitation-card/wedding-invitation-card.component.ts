@@ -20,6 +20,6 @@ export class WeddingInvitationCardComponent implements OnInit {
     // Luego de 1 segundo, lo restauramos
     setTimeout(() => {
       this.renderer.removeStyle(document.body, 'overflow');
-    }, 4000);
+    }, 5000);
   }
 }
