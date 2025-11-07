@@ -10,33 +10,33 @@
       <img
         src="images/resource/flower-01.svg"
         alt="flor center"
-        loading="lazy"
+        loading="eager"
         class="absolute right-[0rem] top-[-0rem] w-full max-w-[5.808em]"
       />
       <img
         src="images/resource/flower-02.svg"
         alt="flor center"
-        loading="lazy"
+        loading="eager"
         class="absolute left-[-1rem] top-1/2 -translate-y-[15%] w-full max-w-[7em]"
       />
       <img
         src="images/resource/flower-03.svg"
         alt="flor center"
-        loading="lazy"
+        loading="eager"
         class="absolute right-[-0.3125rem] bottom-[0rem] w-full max-w-[12.2698em]"
       />
       <img
         src="images/resource/flower-04.svg"
         alt="flor center"
-        loading="lazy"
+        loading="eager"
         class="absolute left-[-0.1875rem] top-[0rem] w-full max-w-[9em]"
       />
       <div class="w-full h-full bg-[var(--color-primary)] p-[1.44em]">
-        <div class="relative w-full flex justify-center mb-[0.64em]">
+        <div class="relative w-full flex justify-center mb-[0.64em] h-[9.48em]">
           <img
             src="images/resource/circle-ramo.svg"
             alt="ramo"
-            loading="lazy"
+            loading="eager"
             class="w-full max-w-[9.48em] relative"
           />
           <p
@@ -71,14 +71,21 @@
             class="relative w-[0.125rem] h-[3.8em] bg-black mx-auto"
           ></div> -->
           <!-- love letter -->
-           <div class="card-letter-container">
-             <div class="envelope relative mx-auto flex justify-center overflow-hidden animate-growIn">
-               <img src="images/ico/icon_letter_love/card_top.svg" alt="top" loading="lazy" class="absolute w-20 top-0 flap-anim">
-               <img src="images/ico/icon_letter_love/letter.svg" alt="letter" loading="lazy" class="absolute w-[3.375rem] z-10 bottom-0 letter-anim">
-               <img src="images/ico/icon_letter_love/card_front.svg" alt="front" loading="lazy" class="absolute w-20 z-20 bottom-0">
-               <img src="images/ico/icon_letter_love/card_back.svg" alt="back" loading="lazy" class="absolute w-20 bottom-0">
-             </div>
-           </div>
+           @defer {
+            <div class="card-letter-container mx-auto">
+              <a routerLink="/wedding-landing" class="cursor-pointer">
+                <div class="envelope relative flex justify-center overflow-hidden animate-growIn">
+                  <img src="images/ico/icon_letter_love/card_top.svg" alt="top" loading="eager" class="absolute w-[3.2em] top-0 flap-anim">
+                  <img src="images/ico/icon_letter_love/letter.svg" alt="letter" loading="eager" class="absolute w-[2.16em] z-10 bottom-0 letter-anim">
+                  <img src="images/ico/icon_letter_love/card_front.svg" alt="front" loading="eager" class="absolute w-[3.2em] z-20 bottom-0">
+                  <img src="images/ico/icon_letter_love/card_back.svg" alt="back" loading="eager" class="absolute w-[3.2em] bottom-0">
+                </div>
+              </a>
+            </div>
+          } @placeholder (minimum 100ms) {
+             <div class="h-[3.2em]"></div>
+           }
+
         </div>
 
         <p

@@ -50,12 +50,12 @@
 }
 
 .card-letter-container {
-   @apply w-full;
+   @apply w-max;
   perspective: 800px;
 }
 
 .envelope {
-  @apply w-20 h-20;
+  @apply w-[3.2em] h-[3.2em];
   transform-style: preserve-3d;
 }
 
