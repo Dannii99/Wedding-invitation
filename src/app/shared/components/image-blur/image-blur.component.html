@@ -1,0 +1,18 @@
+<div class="relative w-full overflow-hidden" [ngClass]="customClass()">
+  <div
+    class="absolute inset-0 bg-center bg-cover transition-all duration-700 ease-out"
+    [ngClass]="[
+     customClass(),
+     bgLoaded() ? 'blur-0 scale-100' : 'blur-xl scale-105'
+    ]"
+    [ngStyle]="{
+      'background-image': 'url(' + (bgLoaded() ? hdUrl() : lowResUrl()) + ')'
+    }"
+  ></div>
+</div>
+<img
+  [src]="hdUrl()"
+  (load)="onHdImageLoad()"
+  class="hidden"
+  alt="preload banner"
+/>
