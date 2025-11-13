@@ -6,15 +6,19 @@ import {
   inject,
   DestroyRef,
   HostListener,
+  Renderer2,
+  signal,
 } from '@angular/core';
 import { interval, startWith, Subscription } from 'rxjs';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { GaleryService } from '../../core/services/galery.service';
+import { SafeUrlPipe } from '../../shared/pipes/safe-url.pipe';
+import { ImageBlurComponent } from '../../shared/components/image-blur/image-blur.component';
 
 @Component({
   selector: 'app-wedding-landing',
   standalone: true,
-  imports: [CommonModule, LoadingComponent],
+  imports: [CommonModule, LoadingComponent, SafeUrlPipe, ImageBlurComponent],
   templateUrl: './wedding-landing.component.html',
   styleUrl: './wedding-landing.component.scss',
 })
@@ -72,7 +76,36 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
   private touchDeltaX = 0;
   private swipeThreshold = 40; // px
 
+
+  /* Iframe de codigo de ropa */
+  loadingIframe = signal<boolean>(true) ;
+  iframeUrl = 'https://petracoding.github.io/pinterest/board.html?link=urhottestbae/c%C3%B3digo-de-vestimenta-boda/?invite_code=4a7fa2650e5e45b9b70e2b34c09e699c&sender=763078868021064802&hideHeader=0&hideFooter=0&transparent=0';
+
+  onIframeLoad() {
+    this.loadingIframe.set(false);
+  }
+
+  constructor(private renderer: Renderer2) {}
+
   ngOnInit(): void {
+
+    // Ocultamos el scroll del body temporalmente
+    this.renderer.setStyle(document.body, 'overflow', 'hidden');
+
+    // Luego de 1 segundo, lo restauramos
+    setTimeout(() => {
+      this.renderer.removeStyle(document.body, 'overflow');
+    }, 5000);
+
+    //por si no carga el frame
+    setTimeout(() => {
+      if (this.loadingIframe()) {
+        this.loadingIframe.set(false);
+        // aquí podrías setear un flag de error y mostrar un mensaje
+      }
+    }, 15000);
+
+
     // this.galeryService.getGalery();
 
     if (this.showSeconds) {
