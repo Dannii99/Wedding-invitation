@@ -32,8 +32,8 @@ export class ImageBlurComponent {
 
   constructor() {
     effect(() => {
-      console.log('hdUrl => ', this.hdUrl());
-      console.log('lowResUrl => ', this.lowResUrl());
+      // console.log('hdUrl => ', this.hdUrl());
+      // console.log('lowResUrl => ', this.lowResUrl());
     })
   }
 
