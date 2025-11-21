@@ -8,12 +8,14 @@ import {
   HostListener,
   Renderer2,
   signal,
+  effect,
 } from '@angular/core';
 import { interval, startWith, Subscription } from 'rxjs';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { GaleryService } from '../../core/services/galery.service';
 import { SafeUrlPipe } from '../../shared/pipes/safe-url.pipe';
 import { ImageBlurComponent } from '../../shared/components/image-blur/image-blur.component';
+import { Galery } from '../../core/modules/galery.interface';
 
 @Component({
   selector: 'app-wedding-landing',
@@ -85,7 +87,15 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
     this.loadingIframe.set(false);
   }
 
-  constructor(private renderer: Renderer2) {}
+  // galery ______________________
+  galery = signal<Galery[]>([])
+
+  constructor(private renderer: Renderer2) {
+    effect(() => {
+      console.log('galery => ', this.galery());
+
+    })
+  }
 
   ngOnInit(): void {
 
@@ -106,7 +116,11 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
     }, 15000);
 
 
-    // this.galeryService.getGalery();
+    this.galeryService.getGalery().subscribe({
+      next: (value) => {
+        this.galery.set(value.items);
+      }
+    });
 
     if (this.showSeconds) {
       this.boxes = [
@@ -166,15 +180,15 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    if (!this.images.length) return;
-    this.activeIndex = (this.activeIndex + 1) % this.images.length;
+    if (!this.galery().length) return;
+    this.activeIndex = (this.activeIndex + 1) % this.galery().length;
     this.imageLoaded = false;
   }
 
   prev() {
-    if (!this.images.length) return;
+    if (!this.galery().length) return;
     this.activeIndex =
-      (this.activeIndex - 1 + this.images.length) % this.images.length;
+      (this.activeIndex - 1 + this.galery().length) % this.galery().length;
     this.imageLoaded = false;
   }
 
