@@ -16,11 +16,12 @@ import { GaleryService } from '../../core/services/galery.service';
 import { SafeUrlPipe } from '../../shared/pipes/safe-url.pipe';
 import { ImageBlurComponent } from '../../shared/components/image-blur/image-blur.component';
 import { Galery } from '../../core/modules/galery.interface';
+import { SpliterComponent } from '../../shared/components/spliter/spliter.component';
 
 @Component({
   selector: 'app-wedding-landing',
   standalone: true,
-  imports: [CommonModule, LoadingComponent, SafeUrlPipe, ImageBlurComponent],
+  imports: [CommonModule, LoadingComponent, SafeUrlPipe, ImageBlurComponent, SpliterComponent],
   templateUrl: './wedding-landing.component.html',
   styleUrl: './wedding-landing.component.scss',
 })
@@ -30,7 +31,6 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
   targetDate = new Date('2026-02-28T15:00:00-05:00');
 
   showSeconds = true;
-  label = 'Nuestra boda';
   subtitle = 'Cuenta regresiva en tiempo real';
 
   private sub?: Subscription;
@@ -92,8 +92,7 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
 
   constructor(private renderer: Renderer2) {
     effect(() => {
-      console.log('galery => ', this.galery());
-
+      // console.log('galery => ', this.galery());
     })
   }
 

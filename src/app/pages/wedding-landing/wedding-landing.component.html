@@ -1,190 +1,223 @@
 @defer {
-  <main class="flex p-4 md:p-6 h-[100dvh] overflow-auto fade-in">
-    <div class="w-full max-w-[26.875rem] banner m-auto">
-      <!--  bg-[var(--color-primary)] -->
-      <div class="border-july left"></div>
-      <div class="border-july right"></div>
-      <div class="border-july top"></div>
-      <div class="border-july bottom"></div>
-      <div class="w-full h-full relativez-10 p-3">
-        <img
-          src="images/resource/webp/flower-01.webp"
-          alt="flor center"
-          class="absolute right-[0rem] top-[-0rem] w-full max-w-[5.808em]"
-        />
-        <img
-          src="images/resource/webp/flower-02.webp"
-          alt="flor center"
-          class="absolute left-[-1rem] top-1/2 -translate-y-[15%] w-full max-w-[7em]"
-        />
-        <img
-          src="images/resource/webp/flower-03.webp"
-          alt="flor center"
-          class="absolute right-[-0.3125rem] bottom-[0rem] w-full max-w-[12.2698em]"
-        />
-        <img
-          src="images/resource/webp/flower-04.webp"
-          alt="flor center"
-          class="absolute left-[-0.1875rem] top-[0rem] w-full max-w-[9em]"
-        />
-        <div class="w-full h-full bg-[var(--color-primary)] px-4 py-12">
-          <div class="w-full relative z-20">
+<main class="flex p-4 md:p-6 h-[100dvh] overflow-auto fade-in">
+  <div class="w-full max-w-[26.875rem] banner m-auto">
+    <!--  bg-[var(--color-primary)] -->
+    <div class="border-july left"></div>
+    <div class="border-july right"></div>
+    <div class="border-july top"></div>
+    <div class="border-july bottom"></div>
+    <div class="w-full h-full relativez-10 p-3">
+      <img
+        src="images/resource/webp/flower-01.webp"
+        alt="flor center"
+        class="absolute right-[0rem] top-[-0rem] w-full max-w-[5.808em]"
+      />
+      <img
+        src="images/resource/webp/flower-02.webp"
+        alt="flor center"
+        class="absolute left-[-1rem] top-1/2 -translate-y-[15%] w-full max-w-[7em]"
+      />
+      <img
+        src="images/resource/webp/flower-03.webp"
+        alt="flor center"
+        class="absolute right-[-0.3125rem] bottom-[0rem] w-full max-w-[12.2698em]"
+      />
+      <img
+        src="images/resource/webp/flower-04.webp"
+        alt="flor center"
+        class="absolute left-[-0.1875rem] top-[0rem] w-full max-w-[9em]"
+      />
+      <div class="w-full h-full bg-[var(--color-primary)] px-4 py-12">
+        <div class="w-full relative z-20">
+          <div
+            class="relative flex justify-center items-center min-h-[20.3125rem] mb-6"
+          >
             <div
-              class="relative flex justify-center items-center min-h-[20.3125rem] mb-6"
+              class="px-2 py-2 bg-white absolute w-full max-w-[16.0625rem] min-h-[19rem] -rotate-12 shadow z-10"
             >
-              <div
-                class="px-2 py-2 bg-white absolute w-full max-w-[16.0625rem] min-h-[19rem] -rotate-12 shadow z-10"
-              >
-                <!-- <div
+              <!-- <div
                   class="w-full h-full bg-slate-400 px-[5rem] py-[7.5rem] portada thwo"
                 ></div> -->
-                <image-blur [hdUrl]="'images/retratos/subRetrato.webp'" customClass="w-full h-[15.5rem]"></image-blur>
-              </div>
-              <div
-                class="px-2 py-2 bg-white absolute w-full max-w-[16.0625rem] min-h-[19rem] rotate-6 shadow z-20"
-              >
-                <!-- <div
+              <image-blur
+                [hdUrl]="'images/retratos/subRetrato.webp'"
+                customClass="w-full h-[15.5rem]"
+              ></image-blur>
+            </div>
+            <div
+              class="px-2 py-2 bg-white absolute w-full max-w-[16.0625rem] min-h-[19rem] rotate-6 shadow z-20"
+            >
+              <!-- <div
                   class="w-full h-full bg-slate-400 px-[5rem] py-[7.5rem] portada one"
                 ></div> -->
-                <image-blur [hdUrl]="'images/retratos/retrato.webp'" customClass="w-full h-[15.5rem]"></image-blur><!-- bg-slate-400 -->
-                <p class="text-end text-[0.7rem] mt-2">28.02.2026</p>
-               </div>
+              <image-blur
+                [hdUrl]="'images/retratos/retrato.webp'"
+                customClass="w-full h-[15.5rem]"
+              ></image-blur
+              ><!-- bg-slate-400 -->
+              <p class="text-center text-[1rem] mt-3">28.02.2026</p>
             </div>
+          </div>
 
-
-
-
-            <section
-              class="w-full flex flex-col items-center justify-center mb-8"
+          <section
+            class="w-full flex flex-col items-center justify-center mb-8"
+          >
+            <h1
+              class="text-center text-[3rem] leading-[0.8] mt-4 mb-8 carattere-regular px-12"
             >
-              <h1 class="text-center text-[3rem] leading-[0.8] mt-4 mb-8 carattere-regular">Un sí rodeado de olas y sonrisas</h1>
+              Un sí rodeado de olas y sonrisas
+            </h1>
 
-              <p
-                class="uppercase text-center tracking-[0.35em] text-xs text-gray-500 playfair-display-regular"
-              >
-                {{ label }}
-              </p>
-              <p class="mb-2 text-center playfair-display-regular text-xl">Te esperamos el dia</p>
-              <p class="text-center mb-4 caladea-regular text-2xl">28 FEBRERO, 2026</p>
+            <p
+              class="uppercase text-center tracking-[0.35em] text-xs text-gray-500 playfair-display-regular mb-3"
+            >
+              FALTAN
+            </p>
+            <!-- <p class="mb-2 text-center playfair-display-regular text-xl">Te esperamos el dia</p>
+              <p class="text-center mb-4 caladea-regular text-2xl">28 FEBRERO, 2026</p> -->
 
-              <div
-                class="relative flex items-stretch gap-3 sm:gap-4 select-none"
-                role="timer"
-                aria-live="polite"
-                [attr.aria-label]="ariaLabel"
-              >
-                <ng-container *ngFor="let box of boxes; let i = index">
-                  <div class="group relative">
-                    <div
-                      class="backdrop-blur shadow-[0_10px_25px_rgba(0,0,0,0.08)] ring-1 ring-gray-200 rounded-2xl px-3 py-4 min-w-[64px] text-center transition-transform duration-300 group-hover:-translate-y-0.5"
-                    >
-                      <div
-                        class="font-black tabular-nums leading-none tracking-tight text-lg text-gray-900 caladea-bold"
-                      >
-                        {{ box.value }}
-                      </div>
-                      <div
-                        class="mt-2 text-xs uppercase tracking-widest text-gray-500 playfair-display-regular"
-                      >
-                        {{ box.label }}
-                      </div>
-                    </div>
-
-                    <!-- Separador ":" excepto el último -->
-                    <div
-                      *ngIf="i < boxes.length - 1"
-                      class="absolute right-[-0.5rem] md:right-[-0.65rem] top-1/2 -translate-y-1/2 text-gray-400 text-base font-bold"
-                    >
-                      :
-                    </div>
-                  </div>
-                </ng-container>
-              </div>
-            </section>
-
-            <section class="w-full mt-12">
-              <!-- CARD -->
-              <div class="w-full bg-white rounded-lg shadow-card p-4">
-                <!-- Borde interno celeste -->
-                <div class="rounded-md ring-1 ring-sky-100 p-3">
-                  <!-- Icono anillos -->
-                  <div class="flex justify-center mb-3">
-                    <img src="images\resource\anillos.svg" alt="anillo" />
-                  </div>
-                  <!-- Título -->
-                  <h1
-                    class="title-script text-2xl text-slate-800 text-center mb-4 carattere-regular"
+            <div
+              class="relative flex items-stretch gap-3 sm:gap-4 select-none"
+              role="timer"
+              aria-live="polite"
+              [attr.aria-label]="ariaLabel"
+            >
+              <ng-container *ngFor="let box of boxes; let i = index">
+                <div class="group relative">
+                  <div
+                    class="backdrop-blur shadow-[0_10px_25px_rgba(0,0,0,0.08)] ring-1 ring-gray-200 rounded-2xl px-3 py-4 min-w-[64px] text-center transition-transform duration-300 group-hover:-translate-y-0.5"
                   >
-                    Ceremonia &amp; Recepción
-                  </h1>
-                  <!-- Fila: fecha -->
-                  <div class="flex items-start gap-3 mb-3">
-                    <!-- icono calendario -->
-                    <div class="mt-0.5">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 text-slate-600"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                      >
-                        <rect x="3" y="4" width="18" height="18" rx="2"></rect>
-                        <path d="M16 2v4M8 2v4M3 10h18"></path>
-                      </svg>
+                    <div
+                      class="font-black tabular-nums leading-none tracking-tight text-lg text-gray-900 caladea-bold"
+                    >
+                      {{ box.value }}
                     </div>
+                    <div
+                      class="mt-2 text-xs uppercase tracking-widest text-gray-500 playfair-display-regular"
+                    >
+                      {{ box.label }}
+                    </div>
+                  </div>
+
+                  <!-- Separador ":" excepto el último -->
+                  <div
+                    *ngIf="i < boxes.length - 1"
+                    class="absolute right-[-0.5rem] md:right-[-0.65rem] top-1/2 -translate-y-1/2 text-gray-400 text-base font-bold"
+                  >
+                    :
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </section>
+
+          <spliter></spliter>
+
+          <section class="w-full mt-8">
+            <!-- CARD -->
+            <div class="w-full bg-white rounded-lg shadow-card p-4">
+              <!-- Borde interno celeste -->
+              <div class="rounded-md ring-1 ring-sky-100 p-3">
+                <!-- Icono anillos -->
+                <div class="flex justify-center mb-3">
+                  <img src="images\resource\anillos.svg" alt="anillo" />
+                </div>
+                <!-- Título -->
+                <h1
+                  class="title-script text-2xl text-slate-800 text-center mb-4 carattere-regular"
+                >
+                  Ceremonia &amp; Recepción
+                </h1>
+                <!-- Fila: fecha -->
+                <div class="flex items-start gap-3 mb-3">
+                  <!-- icono calendario -->
+                  <div class="mt-0.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 text-slate-600"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    >
+                      <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                      <path d="M16 2v4M8 2v4M3 10h18"></path>
+                    </svg>
+                  </div>
+                  <p class="text-sm text-slate-700 leading-5">
+                    <span class="font-semibold">Sábado, Febrero 28, 2026</span>
+                  </p>
+                </div>
+                <!-- Fila: horarios -->
+                <div class="flex items-start gap-3 mb-3">
+                  <!-- icono reloj -->
+                  <div class="mt-0.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 text-slate-600"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    >
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <path d="M12 7v5l3 2"></path>
+                    </svg>
+                  </div>
+                  <p class="text-sm text-slate-700 leading-5">
+                    <span class="font-semibold">Ceremonia:</span> 5:00 PM |
+                    <span class="font-semibold">Recepción:</span> 7:00 PM
+                  </p>
+                </div>
+                <!-- Fila: lugar -->
+                <div class="flex items-start gap-3 mb-3">
+                  <!-- icono ubicación -->
+                  <div class="mt-0.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 text-slate-600"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    >
+                      <path
+                        d="M12 21s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"
+                      ></path>
+                      <circle cx="12" cy="10" r="2.5"></circle>
+                    </svg>
+                  </div>
+                  <div class="text-sm leading-5">
                     <p class="text-sm text-slate-700 leading-5">
-                      <span class="font-semibold">Sábado, Febrero 28, 2026</span>
+                    <span class="font-semibold"> Centro Recreacional:</span> Puerto Colombia
+                  </p>
+                  </div>
+                </div>
+                <!-- Regalo -->
+                <div class="flex items-start gap-3 mb-3">
+                  <!-- icono ubicación -->
+                  <div class="mt-0.5">
+                    <svg
+                      class="h-5 w-5 text-slate-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.6"
+                        d="M3 8h18v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8zm0-2h18m-9 0v15m-5-15a2.5 2.5 0 1 1 5 0h-5zm5 0a2.5 2.5 0 1 1 5 0h-5z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="text-sm leading-5">
+                    <p class="text-sm text-slate-700 leading-5">
+                       Lluvia de sobre
                     </p>
                   </div>
-                  <!-- Fila: horarios -->
-                  <div class="flex items-start gap-3 mb-3">
-                    <!-- icono reloj -->
-                    <div class="mt-0.5">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 text-slate-600"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                      >
-                        <circle cx="12" cy="12" r="9"></circle>
-                        <path d="M12 7v5l3 2"></path>
-                      </svg>
-                    </div>
-                    <p class="text-sm text-slate-700 leading-5">
-                      <span class="font-semibold">Ceremonia:</span> 5:00 PM |
-                      <span class="font-semibold">Recepción:</span> 7:00 PM
-                    </p>
-                  </div>
-                  <!-- Fila: lugar -->
-                  <div class="flex items-start gap-3 mb-4">
-                    <!-- icono ubicación -->
-                    <div class="mt-0.5">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 text-slate-600"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                      >
-                        <path
-                          d="M12 21s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"
-                        ></path>
-                        <circle cx="12" cy="10" r="2.5"></circle>
-                      </svg>
-                    </div>
-                    <div class="text-sm leading-5">
-                      <p class="text-slate-800 font-medium">
-                        Centro Recreacional Solinilla
-                      </p>
-                      <p class="text-slate-500">Puerto Colombia</p>
-                    </div>
-                  </div>
-                  <!-- Badge Cupos -->
-                  <div class="mb-5">
+                </div>
+                <!-- Badge Cupos -->
+                <!-- <div class="mb-5">
                     <div
                       class="inline-flex items-center gap-2 bg-[var(--color-greem-terceary)] rounded-md px-3 py-2"
                     >
@@ -196,28 +229,92 @@
                         >2</span
                       >
                     </div>
-                  </div>
-                  <!-- Botón -->
-                  <a
-                    href="#ubicacion"
-                    class="block w-full text-base text-center bg-[var(--color-secondary)] hover:bg-[var(--color-sky-terceary)] text-white font-semibold rounded-full py-1 transition"
-                  >
-                    VER UBICACIÓN
-                  </a>
-                </div>
-              </div>
-            </section>
+                  </div> -->
 
-            <section class="w-full mt-12 mb-12 flex flex-col">
-              <img
-                src="images/resource/user.png"
-                alt="user"
-                class="w-12 mx-auto"
-              />
-              <h3 class="text-center text-base font-bold playfair-display-bold">
-                CODIGO DE VESTIMENTA
-              </h3>
-              <p class="text-center text-xs mb-3">Garden formal</p>
+                <hr />
+
+                <!-- CUPOS -->
+                <div class="w-full flex">
+                  <div
+                    class="mx-auto mt-3 inline-block rounded-full border border-gray-300 px-4 py-1 text-sm tracking-wide text-gray-700 mb-4"
+                  >
+                    CUPOS: <span class="font-semibold text-gray-900">2</span>
+                  </div>
+                </div>
+
+                <!-- Botón -->
+                <a
+                  href="#ubicacion"
+                  class="block text-base text-center bg-[var(--color-secondary)] hover:bg-[var(--color-sky-terceary)] text-white font-semibold rounded-full py-1 transition mx-4"
+                >
+                  VER UBICACIÓN
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <spliter></spliter>
+
+          <section
+            class="w-full mt-8 mb-12 flex flex-col bg-white rounded-3xl px-4 py-3"
+          >
+            <img
+              src="images/resource/user.png"
+              alt="user"
+              class="w-12 mx-auto"
+            />
+            <h3 class="text-center text-lg font-bold playfair-display-regular">
+              CODIGO DE VESTIMENTA
+            </h3>
+            <p class="text-center text-xl mb-4 playfair-display-bold">
+              GARDEN FORMAL
+            </p>
+            <p class="text-center text-xs mb-3 playfair-display-regular">
+              Paleta de colores sugerida
+            </p>
+
+            <!-- Paleta de colores sugerida -->
+            <div class="w-full flex flex-col items-center mb-4">
+              <!-- Título -->
+              <!-- <p class="text-sm md:text-base text-gray-800 mb-3">
+                Paleta de colores sugerida
+              </p> -->
+
+              <!-- Filita de círculos -->
+              <div
+                class="flex flex-nowrap items-center justify-center gap-3 md:gap-4"
+              >
+                <!-- Rosa -->
+                <span
+                  class="inline-block w-[clamp(1.6rem,4vw,2.4rem)] aspect-square rounded-full bg-[#fbd2d8] shadow-[0_3px_6px_rgba(0,0,0,0.2)]"
+                >
+                </span>
+
+                <!-- Durazno -->
+                <span
+                  class="inline-block w-[clamp(1.6rem,4vw,2.4rem)] aspect-square rounded-full bg-[#fde1b8] shadow-[0_3px_6px_rgba(0,0,0,0.2)]"
+                >
+                </span>
+
+                <!-- Amarillo suave -->
+                <span
+                  class="inline-block w-[clamp(1.6rem,4vw,2.4rem)] aspect-square rounded-full bg-[#fff8b8] shadow-[0_3px_6px_rgba(0,0,0,0.2)]"
+                >
+                </span>
+
+                <!-- Verde menta -->
+                <span
+                  class="inline-block w-[clamp(1.6rem,4vw,2.4rem)] aspect-square rounded-full bg-[#ddfbe0] shadow-[0_3px_6px_rgba(0,0,0,0.2)]"
+                >
+                </span>
+
+                <!-- Azul pastel -->
+                <span
+                  class="inline-block w-[clamp(1.6rem,4vw,2.4rem)] aspect-square rounded-full bg-[#cfe6ff] shadow-[0_3px_6px_rgba(0,0,0,0.2)]"
+                >
+                </span>
+              </div>
+            </div>
 
             <!--   <iframe
                 id="code"
@@ -225,10 +322,9 @@
                 src="https://petracoding.github.io/pinterest/board.html?link=urhottestbae/c%C3%B3digo-de-vestimenta-boda/?invite_code=4a7fa2650e5e45b9b70e2b34c09e699c&sender=763078868021064802&hideHeader=0&hideFooter=0&transparent=0"
               ></iframe> -->
 
-
-
-            <div class="relative w-full h-[31.25rem] rounded-2xl overflow-hidden bg-gray-100">
-
+            <div
+              class="relative w-full h-[31.25rem] rounded-2xl overflow-hidden bg-gray-100"
+            >
               <!-- IFRAME -->
               <iframe
                 class="w-full h-full border-0"
@@ -241,119 +337,136 @@
               <!-- SKELETON OVERLAY -->
               <div
                 *ngIf="loadingIframe()"
-                class="absolute inset-0 flex flex-col items-center justify-center gap-4
-                      bg-gray-100/90 backdrop-blur-sm"
+                class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gray-100/90 backdrop-blur-sm"
               >
                 <!-- círculo tipo avatar -->
-                <div class="w-16 h-16 rounded-full bg-gray-200 animate-pulse"></div>
+                <div
+                  class="w-16 h-16 rounded-full bg-gray-200 animate-pulse"
+                ></div>
 
                 <!-- líneas de texto -->
-                <div class="w-48 h-4 rounded-full bg-gray-200 animate-pulse"></div>
-                <div class="w-40 h-4 rounded-full bg-gray-200 animate-pulse"></div>
-                <div class="w-32 h-4 rounded-full bg-gray-200 animate-pulse"></div>
+                <div
+                  class="w-48 h-4 rounded-full bg-gray-200 animate-pulse"
+                ></div>
+                <div
+                  class="w-40 h-4 rounded-full bg-gray-200 animate-pulse"
+                ></div>
+                <div
+                  class="w-32 h-4 rounded-full bg-gray-200 animate-pulse"
+                ></div>
 
                 <!-- barra inferior simulando botón -->
-                <div class="mt-4 w-32 h-10 rounded-full bg-gray-200 animate-pulse"></div>
+                <div
+                  class="mt-4 w-32 h-10 rounded-full bg-gray-200 animate-pulse"
+                ></div>
 
                 <!-- texto pequeño tipo helper -->
-                <p class="text-xs text-gray-400 mt-4">
-                  Cargando contenido...
-                </p>
+                <p class="text-xs text-gray-400 mt-4">Cargando contenido...</p>
               </div>
             </div>
+          </section>
 
-            </section>
+          <spliter></spliter>
 
-            <section class="w-full mt-16 mb-12 flex flex-col md:px-4">
-
-              <h3 class="text-center text-base font-bold  playfair-display-bold">
-                NUESTRA HISTORIA
-              </h3>
-              <p class="text-center text-xs mb-3">Lorem ipsum</p>
-              <div class="w-full min-h-[25rem] rounded-xl bg-gray-500 mb-6 overflow-hidden">
-                <image-blur [hdUrl]="'images/retratos/banner.webp'" customClass="w-full h-full min-h-[25rem] object-cover"></image-blur>
-                <!-- <img
+          <section class="w-full mt-8 mb-12 flex flex-col md:px-4">
+            <h3 class="text-center text-base font-bold playfair-display-bold">
+              NUESTRA HISTORIA
+            </h3>
+            <p class="text-center text-xs mb-3">Lorem ipsum</p>
+            <div
+              class="w-full min-h-[25rem] rounded-xl bg-gray-500 mb-6 overflow-hidden"
+            >
+              <image-blur
+                [hdUrl]="'images/retratos/banner.webp'"
+                customClass="w-full h-full min-h-[25rem] object-cover"
+              ></image-blur>
+              <!-- <img
                   src="images/galery/image-16.png"
                   alt="history"
                   class="w-full h-full min-h-[25rem] object-cover"
                 /> -->
-              </div>
-              <h3 class="text-center text-base font-bold mb-6 playfair-display-bold">
-                SOMOS UNA SOLA CARNE
-              </h3>
-              <p class="text-center text-base">
-                Lorem ipsum es el texto que se usa habitualmente en diseno grafico
-                <br />
-                en demostraciones de tipografias o de borradores de diseno para
-                probar el diseno visual antes <br />
-                de insertar el texto final.
-              </p>
-            </section>
+            </div>
+            <h3
+              class="text-center text-base font-bold mb-6 playfair-display-bold"
+            >
+              SOMOS UNA SOLA CARNE
+            </h3>
+            <p class="text-center text-base">
+              Lorem ipsum es el texto que se usa habitualmente en diseno grafico
+              <br />
+              en demostraciones de tipografias o de borradores de diseno para
+              probar el diseno visual antes <br />
+              de insertar el texto final.
+            </p>
+          </section>
 
+          <spliter></spliter>
 
-             <!-- GALERÍA 2x -->
-            <section class="w-full mt-12 flex flex-col px-4 pb-5">
-              <img
-                src="images/resource/camera-retro.png"
-                alt="user"
-                class="w-12 mx-auto mb-1"
-              />
-              <h3 class="text-center text-base font-bold playfair-display-bold">GALERIA DE FOTOS</h3>
-              <p class="text-center text-xs mb-3">
-                Les compartimos nuestros mejores recuerdos
-              </p>
+          <!-- GALERÍA 2x -->
+          <section class="w-full mt-12 flex flex-col px-4 pb-5">
+            <img
+              src="images/resource/camera-retro.png"
+              alt="user"
+              class="w-12 mx-auto mb-1"
+            />
+            <h3 class="text-center text-base font-bold playfair-display-bold">
+              GALERIA DE FOTOS
+            </h3>
+            <p class="text-center text-xs mb-3">
+              Les compartimos nuestros mejores recuerdos
+            </p>
 
-               <div class="grid grid-cols-2 gap-2">
-                @if (galery().length === 0) {
-                  @for (n of [1,2,3,4]; track i; let i = $index;) {
-                    <div class="animate-pulse rounded-lg bg-slate-300 [aspect-ratio:1/1]"></div>
-                  }
+            <div class="grid grid-cols-2 gap-2">
+              @if (galery().length === 0) { @for (n of [1,2,3,4]; track i; let i
+              = $index;) {
+              <div
+                class="animate-pulse rounded-lg bg-slate-300 [aspect-ratio:1/1]"
+              ></div>
+              } } @for (img of galery().slice(0, 4); track img.id; let i =
+              $index; let last = $last) {
+              <button
+                type="button"
+                class="group relative overflow-hidden rounded-lg bg-slate-100 [aspect-ratio:1/1] focus:outline-none focus:ring-2 focus:ring-sky-400"
+                (click)="openViewer(i)"
+                aria-label="Abrir imagen"
+              >
+                @if (last && galery().length > 4) {
+                <img
+                  [src]="img.thumbUrl"
+                  class="h-full w-full object-cover opacity-60"
+                />
+                <div
+                  class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-3xl font-bold"
+                >
+                  +{{ galery().length - 3 }}
+                </div>
                 }
-                  @for (img of galery().slice(0, 4); track img.id; let i = $index; let last = $last) {
-                    <button
-                      type="button"
-                      class="group relative overflow-hidden rounded-lg bg-slate-100 [aspect-ratio:1/1] focus:outline-none focus:ring-2 focus:ring-sky-400"
-                      (click)="openViewer(i)"
-                      aria-label="Abrir imagen"
-                    >
-                        @if (last && galery().length > 4) {
-                          <img
-                            [src]="img.thumbUrl"
-                            class="h-full w-full object-cover opacity-60"
-                          />
-                          <div
-                            class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-3xl font-bold"
-                          >
-                            +{{ galery().length - 3 }}
-                          </div>
-                        }
 
-                        <!-- 🔹 El último item mostrado (i === 3) -->
-                        @else {
-                           <img
-                            [src]="img.mediaUrl"
-                            [alt]="img.type"
-                            loading="lazy"
-                            decoding="async"
-                            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                        }
-                      <!-- Sutil overlay al hover (en desktop) -->
-                      <div
-                        class="pointer-events-none absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"
-                      ></div>
-                    </button>
-                  }
-              </div>
-            </section>
-
-          </div>
+                <!-- 🔹 El último item mostrado (i === 3) -->
+                @else {
+                <img
+                  [src]="img.mediaUrl"
+                  [alt]="img.type"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                }
+                <!-- Sutil overlay al hover (en desktop) -->
+                <div
+                  class="pointer-events-none absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"
+                ></div>
+              </button>
+              }
+            </div>
+          </section>
         </div>
       </div>
     </div>
-  </main>
+  </div>
+</main>
 } @placeholder (minimum 3000ms) {
-  <loading />
+<loading />
 }
 
 <!-- VISOR / LIGHTBOX -->
@@ -387,9 +500,7 @@
       (click)="closeViewer()"
       aria-label="Cerrar"
     >
-       <img
-        src="images/resource/xmark-solid-full.svg"
-        alt="x" class="w-4">
+      <img src="images/resource/xmark-solid-full.svg" alt="x" class="w-4" />
     </button>
 
     <!-- Prev -->
@@ -401,7 +512,9 @@
     >
       <img
         src="images/resource/angle-left-solid-full.svg"
-        alt="left" class="w-4">
+        alt="left"
+        class="w-4"
+      />
     </button>
 
     <!-- Next -->
@@ -413,7 +526,9 @@
     >
       <img
         src="images/resource/angle-right-solid-full.svg"
-        alt="right" class="w-4">
+        alt="right"
+        class="w-4"
+      />
     </button>
 
     <!-- Indicador -->
