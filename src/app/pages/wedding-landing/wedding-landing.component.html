@@ -164,8 +164,8 @@
                     </svg>
                   </div>
                   <p class="text-sm text-slate-700 leading-5">
-                    <span class="font-semibold">Ceremonia:</span> 5:00 PM |
-                    <span class="font-semibold">Recepción:</span> 7:00 PM
+                    <span class="font-semibold">Ceremonia:</span> 4:00 PM |
+                    <span class="font-semibold">Recepción:</span> 12:00 PM
                   </p>
                 </div>
                 <!-- Fila: lugar -->
@@ -188,7 +188,7 @@
                   </div>
                   <div class="text-sm leading-5">
                     <p class="text-sm text-slate-700 leading-5">
-                    <span class="font-semibold"> Centro Recreacional:</span> Puerto Colombia
+                    <span class="font-semibold">Centro Recreacional Solinilla</span>
                   </p>
                   </div>
                 </div>
@@ -212,7 +212,8 @@
                   </div>
                   <div class="text-sm leading-5">
                     <p class="text-sm text-slate-700 leading-5">
-                       Lluvia de sobre
+                       <span class="font-semibold">Lluvia de sobre</span>
+
                     </p>
                   </div>
                 </div>
@@ -243,12 +244,12 @@
                 </div>
 
                 <!-- Botón -->
-                <a
-                  href="#ubicacion"
-                  class="block text-base text-center bg-[var(--color-secondary)] hover:bg-[var(--color-sky-terceary)] text-white font-semibold rounded-full py-1 transition mx-4"
+                <button
+                  (click)="openMapModal()"
+                  class="block text-base text-center bg-[var(--color-secondary)] hover:bg-[var(--color-sky-terceary)] text-white font-semibold rounded-full py-1 px-6 transition mx-auto"
                 >
                   VER UBICACIÓN
-                </a>
+                </button>
               </div>
             </div>
           </section>
@@ -534,6 +535,82 @@
     <!-- Indicador -->
     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm">
       {{ activeIndex + 1 }} / {{ galery().length }}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Modal del mapa -->
+<div
+  *ngIf="isMapModalOpen"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fadeIn"
+>
+  <div
+    class="relative max-w-md w-full mx-4 rounded-3xl bg-white shadow-xl overflow-hidden animate-scaleIn"
+  >
+    <!-- Botón cerrar -->
+    <button
+      type="button"
+      class="absolute right-3 top-3 rounded-full bg-white/80 p-1 text-slate-500 hover:bg-white"
+      (click)="closeMapModal()"
+    >
+      ✕
+    </button>
+
+    <div class="p-5 space-y-3">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+          Ubicación
+        </p>
+        <h3 class="text-lg font-semibold text-slate-800">
+          {{ placeName }}
+        </h3>
+        <p class="text-xs text-slate-500">
+          {{ address }}
+        </p>
+      </div>
+
+      <!-- Contenedor del mapa -->
+      <div class="mt-2 rounded-2xl overflow-hidden border border-slate-100">
+        <div class="aspect-[4/3]">
+          <iframe
+            *ngIf="isMapIframeVisible"
+            [src]="mapUrl"
+            class="h-full w-full"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- Botones abrir apps -->
+      <div class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <a
+          [href]="googleMapsLink"
+          target="_blank"
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50"
+        >
+          Google Maps
+        </a>
+
+        <a
+          [href]="wazeLink"
+          target="_blank"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-xs font-medium text-white hover:bg-slate-800"
+        >
+          Waze
+        </a>
+      </div>
+
+      <p class="mt-2 text-[10px] text-slate-400 text-center">
+        Tip: si estás en tu celular, estos botones abrirán la app directamente.
+      </p>
     </div>
   </div>
 </div>

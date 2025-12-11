@@ -17,11 +17,18 @@ import { SafeUrlPipe } from '../../shared/pipes/safe-url.pipe';
 import { ImageBlurComponent } from '../../shared/components/image-blur/image-blur.component';
 import { Galery } from '../../core/modules/galery.interface';
 import { SpliterComponent } from '../../shared/components/spliter/spliter.component';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-wedding-landing',
   standalone: true,
-  imports: [CommonModule, LoadingComponent, SafeUrlPipe, ImageBlurComponent, SpliterComponent],
+  imports: [
+    CommonModule,
+    LoadingComponent,
+    SafeUrlPipe,
+    ImageBlurComponent,
+    SpliterComponent,
+  ],
   templateUrl: './wedding-landing.component.html',
   styleUrl: './wedding-landing.component.scss',
 })
@@ -78,26 +85,55 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
   private touchDeltaX = 0;
   private swipeThreshold = 40; // px
 
-
   /* Iframe de codigo de ropa */
-  loadingIframe = signal<boolean>(true) ;
-  iframeUrl = 'https://petracoding.github.io/pinterest/board.html?link=urhottestbae/c%C3%B3digo-de-vestimenta-boda/?invite_code=4a7fa2650e5e45b9b70e2b34c09e699c&sender=763078868021064802&hideHeader=0&hideFooter=0&transparent=0';
+  loadingIframe = signal<boolean>(true);
+  iframeUrl =
+    'https://petracoding.github.io/pinterest/board.html?link=urhottestbae/c%C3%B3digo-de-vestimenta-boda/?invite_code=4a7fa2650e5e45b9b70e2b34c09e699c&sender=763078868021064802&hideHeader=0&hideFooter=0&transparent=0';
 
   onIframeLoad() {
     this.loadingIframe.set(false);
   }
 
   // galery ______________________
-  galery = signal<Galery[]>([])
+  galery = signal<Galery[]>([]);
 
-  constructor(private renderer: Renderer2) {
+  // Mapa ________________________
+  placeName = 'Centro Recreacional Solinilla - Combarranquilla';
+  address = 'Km 1.5 Vía Salgar - Sabanilla, Salgar, Atlántico, Colombia';
+
+  private embedUrl = 'https://maps.google.com/maps?q=11.02826,-74.91977&z=16&output=embed';
+
+  mapUrl: SafeResourceUrl = '';
+  isMapModalOpen = false;
+  isMapIframeVisible = false;
+
+  googleMapsLink = 'https://www.google.com/maps/search/?api=1&query=11.02826,-74.91977';
+
+  wazeLink = 'https://waze.com/ul?ll=11.02826,-74.91977&navigate=yes';
+
+  openMapModal() {
+    this.isMapModalOpen = true;
+
+    setTimeout(() => {
+      this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+        this.embedUrl
+      );
+      this.isMapIframeVisible = true;
+    }, 150);
+  }
+
+  closeMapModal() {
+    this.isMapModalOpen = false;
+    this.isMapIframeVisible = false;
+  }
+
+  constructor(private renderer: Renderer2, private sanitizer: DomSanitizer) {
     effect(() => {
       // console.log('galery => ', this.galery());
-    })
+    });
   }
 
   ngOnInit(): void {
-
     // Ocultamos el scroll del body temporalmente
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
 
@@ -114,11 +150,10 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
       }
     }, 15000);
 
-
     this.galeryService.getGalery().subscribe({
       next: (value) => {
         this.galery.set(value.items);
-      }
+      },
     });
 
     if (this.showSeconds) {
