@@ -212,7 +212,7 @@
                   </div>
                   <div class="text-sm leading-5">
                     <p class="text-sm text-slate-700 leading-5">
-                       <span class="font-semibold">Lluvia de sobre</span>
+                       <span class="font-semibold">Lluvia de sobres</span>
 
                     </p>
                   </div>
@@ -239,7 +239,7 @@
                   <div
                     class="mx-auto mt-3 inline-block rounded-full border border-gray-300 px-4 py-1 text-sm tracking-wide text-gray-700 mb-4"
                   >
-                    CUPOS: <span class="font-semibold text-gray-900">2</span>
+                    CUPOS: <span class="font-semibold text-gray-900">{{ cupos() }}</span>
                   </div>
                 </div>
 
@@ -373,7 +373,7 @@
             <h3 class="text-center text-base font-bold playfair-display-bold">
               NUESTRA HISTORIA
             </h3>
-            <p class="text-center text-xs mb-3">Lorem ipsum</p>
+            <p class="text-center text-xs mb-3">El camino que nos trajo hasta aquí</p>
             <div
               class="w-full min-h-[25rem] rounded-xl bg-gray-500 mb-6 overflow-hidden"
             >
@@ -393,11 +393,11 @@
               SOMOS UNA SOLA CARNE
             </h3>
             <p class="text-center text-base">
-              Lorem ipsum es el texto que se usa habitualmente en diseno grafico
-              <br />
-              en demostraciones de tipografias o de borradores de diseno para
-              probar el diseno visual antes <br />
-              de insertar el texto final.
+              Dos son mejor que uno,
+              porque cuando caminan juntos,
+              el amor se fortalece
+              y el camino se vuelve más hermoso. <br />
+              <span class="font-bold text-xs">Eclesiastés 4:9</span>
             </p>
           </section>
 
@@ -491,7 +491,7 @@
       (touchstart)="onTouchStart($event)"
       (touchmove)="onTouchMove($event)"
       (touchend)="onTouchEnd()"
-      (load)="imageLoaded = true"
+      (load)="onImageLoad(); imageLoaded = true"
     />
 
     <!-- Cerrar -->
@@ -538,9 +538,6 @@
     </div>
   </div>
 </div>
-
-
-
 
 
 

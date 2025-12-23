@@ -18,6 +18,8 @@ import { ImageBlurComponent } from '../../shared/components/image-blur/image-blu
 import { Galery } from '../../core/modules/galery.interface';
 import { SpliterComponent } from '../../shared/components/spliter/spliter.component';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { CuposService } from '../../core/services/cupos.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-wedding-landing',
@@ -43,6 +45,8 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
   private sub?: Subscription;
   private destroyRef = inject(DestroyRef);
   private galeryService = inject(GaleryService);
+  private cuposService = inject(CuposService);
+  private route = inject(ActivatedRoute);
 
   boxes: Array<{ label: string; value: string }> = [
     { label: 'DÍAS', value: '00' },
@@ -55,6 +59,10 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
     const [d, h, m] = this.boxes.map((b) => b.value);
     return `${d} días, ${h} horas, ${m} minutos restantes`;
   }
+
+  // # Cupos ___________________________________________
+  cupos = signal<number>(0);
+  isCuposValid = signal<boolean>(false);
 
   /* VISOR */
 
@@ -96,6 +104,7 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
 
   // galery ______________________
   galery = signal<Galery[]>([]);
+  isTransitioning = false;
 
   // Mapa ________________________
   placeName = 'Centro Recreacional Solinilla - Combarranquilla';
@@ -134,6 +143,24 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+     this.route.queryParams.subscribe(params => {
+      console.log('params: ', params);
+
+      const uuid = params['id'];
+
+      if (!uuid) return;
+
+      const cupos = this.cuposService.getCuposByUUID(uuid);
+      console.log('cupos: ', cupos);
+
+
+      if (cupos !== null) {
+        this.cupos.set(cupos);
+        this.isCuposValid.set(true);
+      }
+    });
+
+
     // Ocultamos el scroll del body temporalmente
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
 
@@ -213,7 +240,7 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
     document.documentElement.classList.remove('overflow-hidden');
   }
 
-  next() {
+  /* next() {
     if (!this.galery().length) return;
     this.activeIndex = (this.activeIndex + 1) % this.galery().length;
     this.imageLoaded = false;
@@ -224,6 +251,29 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
     this.activeIndex =
       (this.activeIndex - 1 + this.galery().length) % this.galery().length;
     this.imageLoaded = false;
+  } */
+
+  next() {
+    if (!this.galery().length || this.isTransitioning) return;
+
+    this.isTransitioning = true;
+    this.imageLoaded = false;
+
+    this.activeIndex = (this.activeIndex + 1) % this.galery().length;
+  }
+
+  prev() {
+    if (!this.galery().length || this.isTransitioning) return;
+
+    this.isTransitioning = true;
+    this.imageLoaded = false;
+
+    this.activeIndex = (this.activeIndex - 1 + this.galery().length) % this.galery().length;
+  }
+
+  onImageLoad() {
+    this.imageLoaded = true;
+    this.isTransitioning = false;
   }
 
   // Gestos touch
