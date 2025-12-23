@@ -69,7 +69,7 @@
           <!-- love letter -->
            @defer {
             <div class="card-letter-container mx-auto">
-              <a routerLink="/wedding-landing" class="cursor-pointer">
+              <a (click)="goToWeddingLanding()" class="cursor-pointer">
                 <div class="envelope relative flex justify-center overflow-hidden animate-growIn">
                   <img src="images/ico/icon_letter_love/card_top.svg" alt="top" class="absolute w-[3.2em] top-0 flap-anim">
                   <img src="images/ico/icon_letter_love/letter.svg" alt="letter" class="absolute w-[2.16em] z-10 bottom-0 letter-anim">
@@ -78,7 +78,7 @@
                 </div>
               </a>
             </div>
-            <a routerLink="/wedding-landing" class="cursor-pointer w-max mx-auto uppercase text-center tracking-[0.35em] text-[0.45em] mt-[0.7em] text-gray-500 playfair-display-regular mb-3">
+            <a  (click)="goToWeddingLanding()" class="cursor-pointer w-max mx-auto uppercase text-center tracking-[0.35em] text-[0.45em] mt-[0.7em] text-gray-500 playfair-display-regular mb-3">
               Click aquí
             </a>
           } @placeholder (minimum 4000ms) {
