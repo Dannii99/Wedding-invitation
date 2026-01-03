@@ -503,7 +503,7 @@
 
 <!-- VISOR / LIGHTBOX -->
 <div
-  *ngIf="viewerOpen"
+  *ngIf="viewerOpen()"
   class="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
   (click)="closeViewer()"
   role="dialog"
@@ -515,15 +515,61 @@
     (click)="$event.stopPropagation()"
   >
     <!-- Imagen -->
-    <img
-      [src]="galery()[activeIndex]!.mediaUrl"
-      [alt]="galery()[activeIndex]!.type || 'Imagen'"
+    <!-- <img
+      [src]="galery()[activeIndex()]!.mediaUrl"
+      [alt]="galery()[activeIndex()]?.type || 'Imagen'"
       class="absolute inset-0 m-auto max-h-[90vh] w-auto max-w-[calc(100%-6rem)] rounded-lg shadow-xl"
       (touchstart)="onTouchStart($event)"
       (touchmove)="onTouchMove($event)"
       (touchend)="onTouchEnd()"
       (load)="onImageLoad(); imageLoaded = true"
-    />
+    /> -->
+
+      <!-- MEDIA -->
+    <ng-container [ngSwitch]="activeType()">
+      <!-- IMAGE -->
+      <img
+        *ngSwitchCase="'image'"
+        [src]="activeItem()!.mediaUrl"
+        [alt]="activeItem()!.type || 'Imagen'"
+        class="absolute inset-0 m-auto max-h-[90vh] w-auto max-w-[calc(100%-6rem)] rounded-lg shadow-xl select-none"
+        (touchstart)="onTouchStart($event)"
+        (touchmove)="onTouchMove($event)"
+        (touchend)="onTouchEnd()"
+        (load)="onMediaLoad()"
+      />
+
+      <!-- VIDEO -->
+      <video
+        *ngSwitchCase="'video'"
+        #videoEl
+        class="absolute inset-0 m-auto max-h-[90vh] w-auto max-w-[calc(100%-6rem)] rounded-lg shadow-xl"
+        [poster]="activeItem()!.thumbUrl"
+        [src]="activeVideoSrc()"
+        controls
+        playsinline
+        preload="metadata"
+        (loadeddata)="onMediaLoad()"
+        (waiting)="onBuffering(true)"
+        (playing)="onBuffering(false)"
+      ></video>
+
+      <!-- FALLBACK -->
+      <div
+        *ngSwitchDefault
+        class="absolute inset-0 m-auto text-white text-sm opacity-80"
+      >
+        Formato no soportado
+      </div>
+    </ng-container>
+
+    <!-- Loader opcional (cuando cambias) -->
+    <div
+      *ngIf="!mediaLoaded"
+      class="absolute inset-0 flex items-center justify-center"
+    >
+      <div class="h-10 w-10 rounded-full border-2 border-white/40 border-t-white animate-spin"></div>
+    </div>
 
     <!-- Cerrar -->
     <button
@@ -565,7 +611,7 @@
 
     <!-- Indicador -->
     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm">
-      {{ activeIndex + 1 }} / {{ galery().length }}
+      {{ activeIndex() + 1 }} / {{ galery().length }}
     </div>
   </div>
 </div>
