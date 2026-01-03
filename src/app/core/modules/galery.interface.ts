@@ -1,12 +1,13 @@
+type MediaType = 'image' | 'video';
+
 export interface Galery {
   height: number,
   id: string,
   mediaUrl: string,
   thumbUrl: string,
-  type: string,
+  type: MediaType,
   width: number
 }
-
 
 export interface GaleryResponse {
   page: number;

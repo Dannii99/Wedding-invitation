@@ -9,6 +9,9 @@ import {
   Renderer2,
   signal,
   effect,
+  ViewChild,
+  ElementRef,
+  computed,
 } from '@angular/core';
 import { interval, startWith, Subscription } from 'rxjs';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
@@ -65,11 +68,19 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
   isCuposValid = signal<boolean>(false);
 
   /* VISOR */
+  @ViewChild('videoEl') videoEl?: ElementRef<HTMLVideoElement>;
+
+  private stopVideo() {
+    const v = this.videoEl?.nativeElement;
+    if (!v) return;
+    v.pause();
+    v.currentTime = 0;
+  }
 
   // Navegación por teclado
   @HostListener('document:keydown', ['$event'])
   onKeydown(e: KeyboardEvent) {
-    if (!this.viewerOpen) return;
+    if (!this.viewerOpen()) return;
     if (e.key === 'Escape') this.closeViewer();
     if (e.key === 'ArrowRight') this.next();
     if (e.key === 'ArrowLeft') this.prev();
@@ -84,16 +95,136 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
     // ...
   ];
 
-  viewerOpen = false;
-  activeIndex = 0;
+  viewerOpen = signal(false);
+  activeIndex = signal(0);
   imageLoaded = false;
+
+  // reemplaza imageLoaded por algo genérico:
+  mediaLoaded = signal(false);
+  isTransitioning = signal(false);
+  buffering = signal(false);
 
   // Soporte para swipe
   private touchStartX = 0;
   private touchDeltaX = 0;
   private swipeThreshold = 40; // px
 
-  /* Iframe de codigo de ropa */
+  // galery ______________________
+  galery = signal<Galery[]>([]);
+
+  activeItem = computed(() => this.galery()[this.activeIndex()] ?? null);
+
+  /** Detecta si una URL es video por extensión (mp4, webm, mov...) */
+  private isVideoUrl(url?: string | null): boolean {
+    if (!url) return false;
+    const clean = url.split('?')[0].toLowerCase();
+    return ['.mp4', '.webm', '.mov', '.m4v'].some((ext) => clean.endsWith(ext));
+  }
+
+  activeType = computed<'image' | 'video' | 'unknown'>(() => {
+    const item = this.activeItem();
+    if (!item) return 'unknown';
+
+    // 1) Si el backend manda bien el type, úsalo
+    if (item.type === 'image' || item.type === 'video') return item.type;
+
+    // 2) Fallback por URL (tu caso real)
+    if (this.isVideoUrl(item.mediaUrl) || this.isVideoUrl(item.thumbUrl))
+      return 'video';
+
+    // 3) Si no es video, asumimos imagen
+    return 'image';
+  });
+
+  /** Para videos: elige la URL correcta (a veces viene en thumbUrl) */
+  activeVideoSrc(): string {
+    const item = this.activeItem();
+    if (!item) return '';
+    // Si mediaUrl es video, usa mediaUrl; si no, intenta thumbUrl
+    if (this.isVideoUrl(item.mediaUrl)) return item.mediaUrl;
+    if (this.isVideoUrl(item.thumbUrl)) return item.thumbUrl;
+    // fallback (por si el backend luego arregla el mapping)
+    return item.mediaUrl;
+  }
+
+  private stopActiveVideo() {
+    const v = this.videoEl?.nativeElement;
+    if (!v) return;
+    v.pause();
+    v.currentTime = 0;
+  }
+
+  /* VISOR FUNTION */
+
+  openViewer(index: number) {
+    this.activeIndex.set(index);
+    this.viewerOpen.set(true);
+
+    this.mediaLoaded.set(false);
+    this.isTransitioning.set(false);
+    this.buffering.set(false);
+    // Bloquear scroll del body mientras el visor está abierto
+    document.documentElement.classList.add('overflow-hidden');
+  }
+
+  closeViewer() {
+    this.viewerOpen.set(false);
+    document.documentElement.classList.remove('overflow-hidden');
+  }
+
+  next() {
+    if (!this.galery().length || this.isTransitioning()) return;
+    this.isTransitioning.set(true);
+    this.mediaLoaded.set(false);
+    this.buffering.set(false);
+
+    this.activeIndex.update((i) => (i + 1) % this.galery().length);
+  }
+
+  prev() {
+    if (!this.galery().length || this.isTransitioning()) return;
+    this.isTransitioning.set(true);
+    this.mediaLoaded.set(false);
+    this.buffering.set(false);
+
+    this.activeIndex.update(
+      (i) => (i - 1 + this.galery().length) % this.galery().length
+    );
+  }
+
+  onImageLoad() {
+    this.imageLoaded = true;
+    this.isTransitioning.set(false);
+  }
+
+  /** Unifica load para img y video */
+  onMediaLoad() {
+    this.mediaLoaded.set(true);
+    this.isTransitioning.set(false);
+  }
+
+  onBuffering(state: boolean) {
+    this.buffering.set(state);
+  }
+
+  // Gestos touch
+  onTouchStart(ev: TouchEvent) {
+    this.touchStartX = ev.changedTouches[0].clientX;
+    this.touchDeltaX = 0;
+  }
+  onTouchMove(ev: TouchEvent) {
+    this.touchDeltaX = ev.changedTouches[0].clientX - this.touchStartX;
+  }
+  onTouchEnd() {
+    if (Math.abs(this.touchDeltaX) > this.swipeThreshold) {
+      if (this.touchDeltaX < 0) this.next();
+      else this.prev();
+    }
+    this.touchStartX = 0;
+    this.touchDeltaX = 0;
+  }
+
+  /* Iframe de codigo de ropa ________________________*/
   loadingIframe = signal<boolean>(true);
   iframeUrl =
     'https://petracoding.github.io/pinterest/board.html?link=urhottestbae/c%C3%B3digo-de-vestimenta-boda/?invite_code=4a7fa2650e5e45b9b70e2b34c09e699c&sender=763078868021064802&hideHeader=0&hideFooter=0&transparent=0';
@@ -102,21 +233,19 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
     this.loadingIframe.set(false);
   }
 
-  // galery ______________________
-  galery = signal<Galery[]>([]);
-  isTransitioning = false;
-
   // Mapa ________________________
   placeName = 'Centro Recreacional Solinilla - Combarranquilla';
   address = 'Km 1.5 Vía Salgar - Sabanilla, Salgar, Atlántico, Colombia';
 
-  private embedUrl = 'https://maps.google.com/maps?q=11.02826,-74.91977&z=16&output=embed';
+  private embedUrl =
+    'https://maps.google.com/maps?q=11.02826,-74.91977&z=16&output=embed';
 
   mapUrl: SafeResourceUrl = '';
   isMapModalOpen = false;
   isMapIframeVisible = false;
 
-  googleMapsLink = 'https://www.google.com/maps/search/?api=1&query=11.02826,-74.91977';
+  googleMapsLink =
+    'https://www.google.com/maps/search/?api=1&query=11.02826,-74.91977';
 
   wazeLink = 'https://waze.com/ul?ll=11.02826,-74.91977&navigate=yes';
 
@@ -137,13 +266,23 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
   }
 
   constructor(private renderer: Renderer2, private sanitizer: DomSanitizer) {
-    effect(() => {
-      // console.log('galery => ', this.galery());
+    effect((onCleanup) => {
+      if (!this.viewerOpen()) return;
+
+      // Esto fuerza la dependencia reactiva:
+      const type = this.activeType();
+      this.activeIndex(); // (por si acaso)
+
+      // Cuando cambie el item, antes del siguiente render:
+      this.stopVideo();
+
+      // Si quieres, también en cleanup:
+      onCleanup(() => this.stopVideo());
     });
   }
 
   ngOnInit(): void {
-     this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       console.log('params: ', params);
 
       const uuid = params['id'];
@@ -153,13 +292,11 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
       const cupos = this.cuposService.getCuposByUUID(uuid);
       console.log('cupos: ', cupos);
 
-
       if (cupos !== null) {
         this.cupos.set(cupos);
         this.isCuposValid.set(true);
       }
     });
-
 
     // Ocultamos el scroll del body temporalmente
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
@@ -223,74 +360,6 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
-  }
-
-  /* VISOR FUNTION */
-
-  openViewer(index: number) {
-    this.activeIndex = index;
-    this.viewerOpen = true;
-    this.imageLoaded = false;
-    // Bloquear scroll del body mientras el visor está abierto
-    document.documentElement.classList.add('overflow-hidden');
-  }
-
-  closeViewer() {
-    this.viewerOpen = false;
-    document.documentElement.classList.remove('overflow-hidden');
-  }
-
-  /* next() {
-    if (!this.galery().length) return;
-    this.activeIndex = (this.activeIndex + 1) % this.galery().length;
-    this.imageLoaded = false;
-  }
-
-  prev() {
-    if (!this.galery().length) return;
-    this.activeIndex =
-      (this.activeIndex - 1 + this.galery().length) % this.galery().length;
-    this.imageLoaded = false;
-  } */
-
-  next() {
-    if (!this.galery().length || this.isTransitioning) return;
-
-    this.isTransitioning = true;
-    this.imageLoaded = false;
-
-    this.activeIndex = (this.activeIndex + 1) % this.galery().length;
-  }
-
-  prev() {
-    if (!this.galery().length || this.isTransitioning) return;
-
-    this.isTransitioning = true;
-    this.imageLoaded = false;
-
-    this.activeIndex = (this.activeIndex - 1 + this.galery().length) % this.galery().length;
-  }
-
-  onImageLoad() {
-    this.imageLoaded = true;
-    this.isTransitioning = false;
-  }
-
-  // Gestos touch
-  onTouchStart(ev: TouchEvent) {
-    this.touchStartX = ev.changedTouches[0].clientX;
-    this.touchDeltaX = 0;
-  }
-  onTouchMove(ev: TouchEvent) {
-    this.touchDeltaX = ev.changedTouches[0].clientX - this.touchStartX;
-  }
-  onTouchEnd() {
-    if (Math.abs(this.touchDeltaX) > this.swipeThreshold) {
-      if (this.touchDeltaX < 0) this.next();
-      else this.prev();
-    }
-    this.touchStartX = 0;
-    this.touchDeltaX = 0;
   }
 }
 
