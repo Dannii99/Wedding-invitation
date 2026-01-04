@@ -23,6 +23,8 @@ import { SpliterComponent } from '../../shared/components/spliter/spliter.compon
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CuposService } from '../../core/services/cupos.service';
 import { ActivatedRoute } from '@angular/router';
+import { RevealOnScrollDirective } from '../../shared/directives/reveal-on-scroll.directive';
+import { DeferOnScrollDirective } from '../../shared/directives/defer-on-scroll.directive';
 
 @Component({
   selector: 'app-wedding-landing',
@@ -33,6 +35,8 @@ import { ActivatedRoute } from '@angular/router';
     SafeUrlPipe,
     ImageBlurComponent,
     SpliterComponent,
+    RevealOnScrollDirective,
+    DeferOnScrollDirective
   ],
   templateUrl: './wedding-landing.component.html',
   styleUrl: './wedding-landing.component.scss',
@@ -224,6 +228,55 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
     this.touchDeltaX = 0;
   }
 
+  // Helpers de índices
+
+  private getNextIndex(): number | null {
+    const len = this.galery().length;
+    if (!len) return null;
+    return (this.activeIndex() + 1) % len;
+  }
+
+  private getPrevIndex(): number | null {
+    const len = this.galery().length;
+    if (!len) return null;
+    return (this.activeIndex() - 1 + len) % len;
+  }
+
+  //Precarga funcions
+
+  private preloadImage(url: string) {
+    const img = new Image();
+    img.decoding = 'async';
+    img.loading = 'eager';
+    img.src = url;
+  }
+
+  private preloadVideoMetadata(url: string) {
+    const v = document.createElement('video');
+    v.preload = 'metadata';
+    v.src = url;
+    // No hace falta append al DOM
+  }
+
+  private preloadItem(item: Galery | null) {
+    if (!item) return;
+
+    const maybeVideo =
+      this.isVideoUrl(item.mediaUrl) || this.isVideoUrl(item.thumbUrl);
+
+    if (maybeVideo) {
+      const src = this.isVideoUrl(item.mediaUrl)
+        ? item.mediaUrl
+        : item.thumbUrl;
+      this.preloadVideoMetadata(src);
+    } else {
+      // aquí puedes decidir si precargas thumb o media
+      this.preloadImage(item.mediaUrl);
+    }
+  }
+
+  //___________________________________________________________________________
+
   /* Iframe de codigo de ropa ________________________*/
   loadingIframe = signal<boolean>(true);
   iframeUrl =
@@ -266,18 +319,28 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
   }
 
   constructor(private renderer: Renderer2, private sanitizer: DomSanitizer) {
-    effect((onCleanup) => {
+    effect(() => {
       if (!this.viewerOpen()) return;
 
-      // Esto fuerza la dependencia reactiva:
-      const type = this.activeType();
-      this.activeIndex(); // (por si acaso)
+      // dependencias
+      const idx = this.activeIndex();
+      const list = this.galery();
+      if (!list.length) return;
 
-      // Cuando cambie el item, antes del siguiente render:
-      this.stopVideo();
+      const next = this.getNextIndex();
+      const prev = this.getPrevIndex();
 
-      // Si quieres, también en cleanup:
-      onCleanup(() => this.stopVideo());
+      // opcional: hacer esto cuando el navegador esté desocupado
+      const run = () => {
+        if (next !== null) this.preloadItem(list[next] ?? null);
+        if (prev !== null) this.preloadItem(list[prev] ?? null);
+      };
+
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(run, { timeout: 800 });
+      } else {
+        setTimeout(run, 0);
+      }
     });
   }
 
