@@ -7,22 +7,22 @@
     <div class="border-july top"></div>
     <div class="border-july bottom"></div>
     <div class="w-full h-full relativez-10 p-3">
-      <img
+      <img revealOnScroll  *deferOnScroll
         src="images/resource/webp/flower-01.webp"
         alt="flor center"
         class="absolute right-[0rem] top-[-0rem] w-full max-w-[5.808em]"
       />
-      <img
+      <img revealOnScroll  *deferOnScroll
         src="images/resource/webp/flower-02.webp"
         alt="flor center"
         class="absolute left-[-1rem] top-1/2 -translate-y-[15%] w-full max-w-[7em]"
       />
-      <img
+      <img revealOnScroll  *deferOnScroll
         src="images/resource/webp/flower-03.webp"
         alt="flor center"
         class="absolute right-[-0.3125rem] bottom-[0rem] w-full max-w-[12.2698em]"
       />
-      <img
+      <img revealOnScroll  *deferOnScroll
         src="images/resource/webp/flower-04.webp"
         alt="flor center"
         class="absolute left-[-0.1875rem] top-[0rem] w-full max-w-[9em]"
@@ -58,7 +58,7 @@
             </div>
           </div>
 
-          <section
+          <section id="contador" revealOnScroll
             class="w-full flex flex-col items-center justify-center mb-8"
           >
             <h1
@@ -112,7 +112,8 @@
 
           <spliter></spliter>
 
-          <section class="w-full mt-8">
+          <section id="carta_invitacion" revealOnScroll
+          class="w-full mt-8">
             <!-- CARD -->
             <div class="w-full bg-white rounded-lg shadow-card p-4">
               <!-- Borde interno celeste -->
@@ -287,8 +288,8 @@
 
           <spliter></spliter>
 
-          <section
-            class="w-full mt-8 mb-12 flex flex-col bg-white rounded-3xl px-4 py-3"
+          <section id="formato_bestimenta" revealOnScroll
+            class="w-full mt-8 mb-12 flex flex-col bg-white rounded-3xl px-4 py-3 min-h-[735px]"
           >
             <img
               src="images/resource/user.png"
@@ -307,11 +308,6 @@
 
             <!-- Paleta de colores sugerida -->
             <div class="w-full flex flex-col items-center mb-4">
-              <!-- Título -->
-              <!-- <p class="text-sm md:text-base text-gray-800 mb-3">
-                Paleta de colores sugerida
-              </p> -->
-
               <!-- Filita de círculos -->
               <div
                 class="flex flex-nowrap items-center justify-center gap-3 md:gap-4"
@@ -348,16 +344,10 @@
               </div>
             </div>
 
-            <!--   <iframe
-                id="code"
-                class="w-full min-h-[24rem]"
-                src="https://petracoding.github.io/pinterest/board.html?link=urhottestbae/c%C3%B3digo-de-vestimenta-boda/?invite_code=4a7fa2650e5e45b9b70e2b34c09e699c&sender=763078868021064802&hideHeader=0&hideFooter=0&transparent=0"
-              ></iframe> -->
-
-            <div
+            <div *deferOnScroll
               class="relative w-full h-[31.25rem] rounded-2xl overflow-hidden bg-gray-100"
             >
-              <!-- IFRAME -->
+              <!-- IFRAME PESADO DE PINTERES-->
               <iframe
                 class="w-full h-full border-0"
                 [src]="iframeUrl | safeUrl"
@@ -400,7 +390,8 @@
 
           <spliter></spliter>
 
-          <section class="w-full mt-8 mb-12 flex flex-col md:px-4">
+          <section id="banner" revealOnScroll
+          class="w-full mt-8 mb-12 flex flex-col md:px-4">
             <h3 class="text-center text-lg font-bold playfair-display-bold mb-4">
               CAMINANDO JUNTOS
             </h3>
@@ -435,7 +426,8 @@
           <spliter></spliter>
 
           <!-- GALERÍA 2x -->
-          <section class="w-full mt-12 flex flex-col px-4 pb-5">
+          <section id="galeria" revealOnScroll *deferOnScroll
+          class="w-full mt-12 flex flex-col px-4 pb-5">
             <img
               src="images/resource/camera-retro.png"
               alt="user"
@@ -447,7 +439,7 @@
             <p class="text-center text-base mb-3">
               Les compartimos nuestros mejores recuerdos
             </p>
-
+              <!-- grid de 60 thumbs + visor -->
             <div class="grid grid-cols-2 gap-2">
               @if (galery().length === 0) { @for (n of [1,2,3,4]; track i; let i
               = $index;) {
@@ -492,6 +484,7 @@
               }
             </div>
           </section>
+
         </div>
       </div>
     </div>
@@ -514,16 +507,6 @@
     class="relative w-full h-full max-w-screen-sm mx-auto"
     (click)="$event.stopPropagation()"
   >
-    <!-- Imagen -->
-    <!-- <img
-      [src]="galery()[activeIndex()]!.mediaUrl"
-      [alt]="galery()[activeIndex()]?.type || 'Imagen'"
-      class="absolute inset-0 m-auto max-h-[90vh] w-auto max-w-[calc(100%-6rem)] rounded-lg shadow-xl"
-      (touchstart)="onTouchStart($event)"
-      (touchmove)="onTouchMove($event)"
-      (touchend)="onTouchEnd()"
-      (load)="onImageLoad(); imageLoaded = true"
-    /> -->
 
       <!-- MEDIA -->
     <ng-container [ngSwitch]="activeType()">
@@ -615,8 +598,6 @@
     </div>
   </div>
 </div>
-
-
 
 <!-- Modal del mapa -->
 <div
