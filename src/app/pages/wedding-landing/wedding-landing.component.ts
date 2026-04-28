@@ -379,7 +379,8 @@ export class WeddingLandingComponent implements OnInit, OnDestroy {
 
     this.galeryService.getGalery().subscribe({
       next: (value) => {
-        //this.galery.set(value.items);
+        // se comenta la galeria para mantener la privacidad del usuario
+        //this.galery.set(value.items); 
       },
     });
 
